@@ -22,7 +22,9 @@ mx=np.amax(corr)
 print(mx)
 for i in range(len(corr)):
   if corr[i]==mx:
-    print(i)
+    ix=i
+    break
+print(ix)
 
 #output the result to file sys.argv[2]
 f = open(sys.argv[2], 'w') 
@@ -31,8 +33,9 @@ for i in range(1,len(corr)):
   if i!=(len(corr)-1):
     st=st+","+str(corr[i])
   else:
-    st=st+str(corr[i])
+    st=st+str(corr[i])+"\n"
 f.write(st)
+f.write(str(ix))
 f.close()
 
 # plot the result
