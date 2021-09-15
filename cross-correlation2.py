@@ -9,13 +9,12 @@ mt=m.T #transpose matrix
 
 #computing cross-correlation
 v1=mt[1][12000:15000];v2=mt[2][12000:15000]
-na=len(v1)  #length of data
-na2=1/(na*na)  # adjust factor -- groundless
+c=np.linalg.norm(v1)*np.linalg.norm(v2)
 corr=np.empty(0)   #make nd.array of length zero
-corr=np.append(corr,np.dot(v1,v2)*na2)  # the first element of corr
+corr=np.append(corr,np.dot(v1,v2)*c)  # the first element of corr
 for i in range(len(v1)):
   v2=np.roll(v2,-1)  # shift 1 to the left
-  corr=np.append(corr,np.dot(v1,v2)*na2)   # cross correlation
+  corr=np.append(corr,np.dot(v1,v2)*c)   # cross correlation
 
 # find index of maximum element of corr
 mx=np.amax(corr)
